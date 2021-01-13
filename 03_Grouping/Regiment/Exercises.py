@@ -17,8 +17,13 @@ regiment
 
 # ### Step 4. What is the mean preTestScore from the regiment Nighthawks?  
 regiment.groupby("regiment").mean().loc["Nighthawks", "preTestScore"]
+# ------ OR ------ #
+pd.pivot_table(regiment, index="regiment")
+
 # ### Step 5. Present general statistics by company
 regiment.groupby("company").describe().stack()
+# ------ OR ------ #
+pd.pivot_table(regiment, index="company", aggfunc="describe").stack()
 
 # ### Step 6. What is the mean of each company's preTestScore?
 regiment.groupby("company").mean()["preTestScore"]
